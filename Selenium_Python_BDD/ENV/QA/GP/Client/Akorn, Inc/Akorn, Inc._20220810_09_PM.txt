@@ -1,0 +1,369 @@
+Page Name :Data Overview Screen
+Start Time :22.5995642
+End Time :24.3135157
+Total Load Time :0:00:01.713952
+
+Page Name :Select Run Screen
+Start Time :27.9799025
+End Time :30.4207993
+Total Load Time :0:00:02.440897
+
+Page Name :Run Screen
+Start Time :42.1953026
+End Time :43.3916237
+Total Load Time :0:00:01.196321
+
+Page Name :Run->Price Type->Summary Screen
+Start Time :60.0103688
+End Time :62.3202909
+Total Load Time :0:00:02.309922
+
+Page Name :Run->Price Type->Detail Screen
+Start Time :68.4207528
+End Time :68.9582654
+Total Load Time :0:00:00.537513
+
+Page Name :Run->Price Type->Bucket Screen
+Start Time :74.9469439
+End Time :75.4854346
+Total Load Time :0:00:00.538491
+
+Page Name :Run->Price Type->Bucket tab->Direct Sales
+Start Time :80.0652198
+End Time :81.2223361
+Total Load Time :0:00:01.157116
+
+Page Name :Run->Price Type->Bucket tab->Chargeback
+Start Time :85.6858177
+End Time :86.4225764
+Total Load Time :0:00:00.736759
+
+Page Name :Run->Price Type->Bucket tab->Rebates
+Start Time :90.891414
+End Time :91.5803298
+Total Load Time :0:00:00.688916
+
+Page Name :Run->Price Type->Bucket tab->Tricare
+Start Time :96.0961074
+End Time :97.274028
+Total Load Time :0:00:01.177921
+
+Page Name :Run->Price Type->Override Screen
+Start Time :103.2102221
+End Time :103.7500899
+Total Load Time :0:00:00.539868
+
+Page Name :Approval Screen
+Start Time :106.8512092
+End Time :107.4287759
+Total Load Time :0:00:00.577567
+
+Page Name :Finilization Screen
+Start Time :110.2871166
+End Time :110.8173719
+Total Load Time :0:00:00.530255
+
+Page Name :FILE TEMPLATES Screen
+Start Time :123.6737442
+End Time :124.1890534
+Total Load Time :0:00:00.515309
+
+Page Name :Global->File Template->Template Screen
+Start Time :130.3504567
+End Time :133.2193461
+Total Load Time :0:00:02.868889
+
+Page Name :File Template->Mapping Screen
+Start Time :138.5927003
+End Time :139.3632646
+Total Load Time :0:00:00.770564
+
+Page Name :Global->Price Type
+Start Time :151.3633386
+End Time :151.9008916
+Total Load Time :0:00:00.537553
+
+Page Name :CLIENT->JOINS
+Start Time :163.901591
+End Time :164.4449869
+Total Load Time :0:00:00.543396
+
+Page Name :CLIENT->LABELERS
+Start Time :176.5399732
+End Time :177.0700183
+Total Load Time :0:00:00.530045
+
+Page Name :CLIENT->PRICING
+Start Time :189.2863478
+End Time :209.78649
+Total Load Time :0:00:20.500142
+
+Page Name :CLIENT->PRICING->General
+Start Time :215.9935659
+End Time :216.5346736
+Total Load Time :0:00:00.541108
+
+Page Name :CLIENT->PRODUCTS
+Start Time :228.550267
+End Time :233.9368169
+Total Load Time :0:00:05.386550
+
+Page Name :CLIENT->PRODUCT->General
+Start Time :240.0670577
+End Time :240.6051516
+Total Load Time :0:00:00.538094
+
+Page Name :CLIENT->PRODUCT->Medicaid
+Start Time :246.5043034
+End Time :247.0289976
+Total Load Time :0:00:00.524694
+
+Page Name :CLIENT->PRODUCT->UBR
+Start Time :252.8364707
+End Time :253.3615397
+Total Load Time :0:00:00.525069
+
+Page Name :CLIENT->PRODUCT->GP
+Start Time :259.175538
+End Time :259.7196568
+Total Load Time :0:00:00.544119
+
+Page Name :CLIENT->PRODUCT->Change
+Start Time :265.6194472
+End Time :266.1619816
+Total Load Time :0:00:00.542534
+
+Page Name :USRES->ACCESS CONTROL
+Start Time :278.1176686
+End Time :278.8450299
+Total Load Time :0:00:00.727361
+
+Page Name :USRES->ACCESS CONTROL->Role
+Start Time :285.0887501
+End Time :286.2545398
+Total Load Time :0:00:01.165790
+
+Page Name :USRES->ACCESS CONTROL->Resources
+Start Time :292.2445788
+End Time :292.7831692
+Total Load Time :0:00:00.538590
+
+Page Name :USRES->ROLE TEMPLATES
+Start Time :304.731708
+End Time :305.2586274
+Total Load Time :0:00:00.526919
+
+Page Name :USRES->ACCESS CONTROL->Role->Name
+Start Time :311.4480087
+End Time :311.983669
+Total Load Time :0:00:00.535660
+
+Page Name :CLIENTS
+Start Time :321.2336292
+End Time :321.7592979
+Total Load Time :0:00:00.525669
+
+Page Name :CLIENTS->Header
+Start Time :328.1583989
+End Time :329.3000743
+Total Load Time :0:00:01.141675
+
+Page Name :CLIENTS->Services
+Start Time :335.4457069
+End Time :335.9849811
+Total Load Time :0:00:00.539274
+
+Page Name :CLIENTS->Identifiers
+Start Time :342.2721783
+End Time :342.8153317
+Total Load Time :0:00:00.543153
+
+Page Name :DATA DICTIONARY
+Start Time :351.811518
+End Time :352.3504907
+Total Load Time :0:00:00.538973
+
+Page Name :Data Dictionary->Column
+Start Time :358.4019202
+End Time :358.9416721
+Total Load Time :0:00:00.539752
+
+Page Name :View Data Screen
+Start Time :368.0647766
+End Time :368.7357532
+Total Load Time :0:00:00.670977
+
+Page Name :View Data->AnnualCPIU
+Start Time :374.92261
+End Time :375.4633952
+Total Load Time :0:00:00.540785
+
+Page Name :View Data->BPEstimate
+Start Time :380.1339284
+End Time :381.5141775
+Total Load Time :0:00:01.380249
+
+Page Name :View Data->Chargeback
+Start Time :386.0709831
+End Time :386.598391
+Total Load Time :0:00:00.527408
+
+Page Name :View Data->Contract
+Start Time :391.146826
+End Time :402.7902572
+Total Load Time :0:00:11.643431
+
+Page Name :View Data->COT
+Start Time :407.3727317
+End Time :409.0692029
+Total Load Time :0:00:01.696471
+
+Page Name :View Data->CPIU
+Start Time :413.6474009
+End Time :414.2295502
+Total Load Time :0:00:00.582149
+
+Page Name :View Data->CPPD
+Start Time :418.7996244
+End Time :419.6413932
+Total Load Time :0:00:00.841769
+
+Page Name :View Data->Customer
+Start Time :424.1167821
+End Time :426.032604
+Total Load Time :0:00:01.915822
+
+Page Name :View Data->CustomerID
+Start Time :430.5888325
+End Time :431.1249034
+Total Load Time :0:00:00.536071
+
+Page Name :View Data->CustomerIDRef
+Start Time :435.8607534
+End Time :436.3934705
+Total Load Time :0:00:00.532717
+
+Page Name :View Data->CustomerIDType
+Start Time :441.0627351
+End Time :441.8339828
+Total Load Time :0:00:00.771248
+
+Page Name :View Data->CustomerProductCPPD
+Start Time :446.2318387
+End Time :446.7698827
+Total Load Time :0:00:00.538044
+
+Page Name :View Data->CustomerRef
+Start Time :451.3555722
+End Time :459.6329676
+Total Load Time :0:00:08.277395
+
+Page Name :View Data->DirectSale
+Start Time :464.1717508
+End Time :464.6873663
+Total Load Time :0:00:00.515616
+
+Page Name :View Data->HistoricPricing
+Start Time :469.202355
+End Time :479.0178879
+Total Load Time :0:00:09.815533
+
+Page Name :View Data->LineExtension
+Start Time :483.705913
+End Time :484.5846505
+Total Load Time :0:00:00.878737
+
+Page Name :View Data->OTC
+Start Time :489.0684228
+End Time :489.9197854
+Total Load Time :0:00:00.851363
+
+Page Name :View Data->PHSResult
+Start Time :494.4821821
+End Time :500.3563457
+Total Load Time :0:00:05.874164
+
+Page Name :View Data->Pricing
+Start Time :504.8969016
+End Time :505.4232927
+Total Load Time :0:00:00.526391
+
+Page Name :View Data->Product
+Start Time :510.7483318
+End Time :511.2723305
+Total Load Time :0:00:00.523999
+
+Page Name :View Data->ProductBlend
+Start Time :515.9215476
+End Time :516.4519984
+Total Load Time :0:00:00.530451
+
+Page Name :View Data->ProductCPPD
+Start Time :521.0865759
+End Time :521.9748821
+Total Load Time :0:00:00.888306
+
+Page Name :View Data->ProductXRef
+Start Time :526.5840021
+End Time :527.4277481
+Total Load Time :0:00:00.843746
+
+Page Name :View Data->Rebate
+Start Time :531.8849029
+End Time :532.41463
+Total Load Time :0:00:00.529727
+
+Page Name :View Data->State
+Start Time :536.9519295
+End Time :710.5600597
+Total Load Time :0:02:53.608130
+
+Page Name :View Data->TransType
+Start Time :715.1056145
+End Time :715.6327407
+Total Load Time :0:00:00.527126
+
+Page Name :View Data->Tricare
+Start Time :720.2934104
+End Time :720.8211085
+Total Load Time :0:00:00.527698
+
+Page Name :PRICE TYPE EDITOR
+Start Time :729.9480628
+End Time :730.4873687
+Total Load Time :0:00:00.539306
+
+Page Name :Prict Type->Logic Tab
+Start Time :736.8494243
+End Time :737.393194
+Total Load Time :0:00:00.543770
+
+Page Name :Prict Type->Rule Tab
+Start Time :743.3748571
+End Time :743.9193456
+Total Load Time :0:00:00.544489
+
+Page Name :Prict Type->Output Tab
+Start Time :749.8115485
+End Time :750.3324784
+Total Load Time :0:00:00.520930
+
+Page Name :Prict Type->Change Tab
+Start Time :756.3230109
+End Time :756.8616779
+Total Load Time :0:00:00.538667
+
+Page Name :Rebate Transfer Screen
+Start Time :766.0751752
+End Time :1126.8914764
+Total Load Time :0:06:00.816301
+
+Page Name :APPROVALS
+Start Time :1135.6795407
+End Time :1145.7359362
+Total Load Time :0:00:10.056396
+
+Page Name :UPLOADS
+Start Time :1154.3934711
+End Time :1157.2835027
+Total Load Time :0:00:02.890032

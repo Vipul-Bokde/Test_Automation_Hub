@@ -1,0 +1,32 @@
+key,value
+name,Crown Rebate Template
+services,Government Pricing
+file_format,AUTO
+includes_header,TRUE
+custom_logic,
+use_custom_logic,FALSE
+extract_customers,FALSE
+line_excluder,
+delimiter,
+file_excluder,
+sheet_excluder,
+skip_cols,0
+item,"row[""item""]"
+st_num,"row[""st_num""]"
+bt_num,"row[""bt_num""]"
+contract_num,"row[""contract_num""]"
+quantity,"row[""quantity""]"
+rebate_amount,"row[""rebate_amount""]"
+basis_sales,"row[""basis_sales""]"
+period_date,"row[""period_date""]"
+price_date,"row[""price_date""]"
+rebate_type,"row[""rebate_type""]"
+rebate_source,"row[""rebate_source""]"
+settlement_num,"row[""settlement_num""]"
+settlement_num_gplite,"row[""settlement_num_gplite""]"
+period_month,"row[""period_month""]"
+price_month,"row[""price_month""]"
+line_num,"row[""line_num""]"
+svt_line_id,"row[""svt_line_id""]"
+bfsf,"row[""bfsf""]"
+contract_term,"row["" contract_term""]"

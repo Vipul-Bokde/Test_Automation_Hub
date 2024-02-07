@@ -1,0 +1,39 @@
+# Python virtualenv
+.venv/
+
+# Pipenv
+.env
+
+# Django
+db.sqlite3
+
+# coverage
+.coverage
+htmlcov/*
+
+# misc
+*.swp
+test.py
+*.log
+*.log.*
+
+artifacts
+/drivers
+/files
+
+.idea
+
+#config
+config.yml
+config.py
+
+#allure
+/allure-reports
+/reports
+/AllureReport
+
+### Python ###
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class

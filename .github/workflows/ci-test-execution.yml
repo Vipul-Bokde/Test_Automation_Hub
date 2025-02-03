@@ -40,4 +40,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Test-Reports
-          path: ./SeleniumJava/seleniumtestngframework/reports/
+          path: ./Selenium_Java/seleniumtestngframework/reports/extent-report

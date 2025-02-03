@@ -34,9 +34,10 @@ jobs:
 
       - name: Run Tests
         run: mvn clean test
+        working-directory: ./SeleniumJava/seleniumtestngframework  # Point to the folder with the pom.xml
 
       - name: Upload Test Reports
-        uses: actions/upload-artifact@v4  # Updated version to v2
+        uses: actions/upload-artifact@v4
         with:
           name: Test-Reports
-          path: reports/  # Ensure your Extent Reports are inside the 'reports' folder
+          path: ./SeleniumJava/seleniumtestngframework/reports/extent-report  # Adjust if reports are inside this folder

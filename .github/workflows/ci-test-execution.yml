@@ -20,7 +20,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: '17'  # Change this based on your project JDK version
+          java-version: '17'  # Or your desired JDK version
 
       - name: Set Up Chrome and ChromeDriver
         run: |
@@ -29,8 +29,8 @@ jobs:
           sudo apt install -y chromium-chromedriver
           echo "Chrome and ChromeDriver installed"
 
-      - name: Verify Chrome Installation
-        run: google-chrome --version
+      - name: Clean Maven Cache
+        run: mvn dependency:purge-local-repository
 
       - name: Run Tests
         run: mvn clean test
@@ -40,4 +40,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Test-Reports
-          path: ./SeleniumJava/seleniumtestngframework/reports/extent-report  # Adjust if reports are inside this folder
+          path: ./SeleniumJava/seleniumtestngframework/reports/

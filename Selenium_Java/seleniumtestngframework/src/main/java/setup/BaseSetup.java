@@ -26,7 +26,7 @@ public class BaseSetup {
     public void setup() {
         ExtentReportManager.initExtentReport();
         logger.info("Starting the test setup...");
-        ExtentReportManager.logInfo("Starting the test setup...");
+        ExtentReportManager.logInfo("Starting the test setup....");
 
         // Read browser name from config file
         String browser = ConfigReader.getProperty("browser");

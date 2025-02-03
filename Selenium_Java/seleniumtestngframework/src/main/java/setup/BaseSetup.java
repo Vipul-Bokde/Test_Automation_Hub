@@ -7,7 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
-import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import libraries.BrowserActions;  // Import the BrowserActions class from libraries package
@@ -23,7 +23,6 @@ public class BaseSetup {
     public void setup() {
         // Initialize Extent Report
         ExtentReportManager.initExtentReport();
-
         logger.info("Starting the test setup...");
         ExtentReportManager.logInfo("Starting the test setup...");
         // Setup the browser based on the configuration (chrome, edge, firefox, safari)
@@ -63,7 +62,7 @@ public class BaseSetup {
         browserActions = new BrowserActions(driver);
     }
 
-    @AfterMethod
+    @AfterTest
     public void teardown() {
         logger.info("Tearing down the test...");
         if (driver != null) {

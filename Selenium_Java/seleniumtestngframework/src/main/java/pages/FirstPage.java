@@ -1,28 +1,23 @@
 package pages;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
-import utilities.ExtentReportManager;
+import libraries.Locators;
 
 public class FirstPage {
-
-	private WebDriver driver;
+	private Locators locators;
 
 	private By usernameField = By.name("q");
+	private By listOfSweet = By.xpath("(//a[@title = 'Wedding Special'])[3]");
 
 	// Constructor
 	public FirstPage(WebDriver driver) {
-		this.driver = driver;
+		this.locators = new Locators(driver);
 	}
 
 	public void enterUsername(String username) {
-		WebElement usernameInput = driver.findElement(usernameField);
-		ExtentReportManager.logInfo("Clicked on search box");
-		usernameInput.clear();
-		usernameInput.sendKeys(username);
-		ExtentReportManager.logInfo(username + " is added as an input in search box");
+		locators.sendKeys(usernameField, username);
+		String locu =locators.getText(listOfSweet);
+		System.out.println(locu);
 	}
 
 }

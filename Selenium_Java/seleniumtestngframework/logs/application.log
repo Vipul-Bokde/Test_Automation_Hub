@@ -1,0 +1,103 @@
+2025-02-03 17:25:20 INFO  BaseSetup - Starting the test setup...
+2025-02-03 17:25:20 INFO  BaseSetup - Selected browser: chrome
+2025-02-03 17:25:28 INFO  BaseSetup - Test setup completed and browser opened.
+2025-02-03 17:25:28 INFO  BaseSetup - Tearing down the test...
+2025-02-03 17:25:28 INFO  BaseSetup - Browser closed.
+2025-02-03 17:27:32 INFO  BaseSetup - Starting the test setup...
+2025-02-03 17:27:32 INFO  BaseSetup - Selected browser: edge
+2025-02-03 17:27:52 INFO  BaseSetup - Test setup completed and browser opened.
+2025-02-03 17:27:52 INFO  BaseSetup - Tearing down the test...
+2025-02-03 17:27:53 INFO  BaseSetup - Browser closed.
+2025-02-03 17:40:43 INFO  BaseSetup - Starting the test setup...
+2025-02-03 17:40:43 INFO  BaseSetup - Selected browser: chrome
+2025-02-03 17:40:49 INFO  ExtentReportManager - Browser opened successfully.
+2025-02-03 17:40:49 INFO  BaseSetup - Tearing down the test...
+2025-02-03 17:40:50 INFO  BaseSetup - Browser closed.
+2025-02-03 17:40:50 INFO  ExtentReportManager - Test execution completed. View the report at: file:///C:/Users/vipul/git/Test_Automation_Hub/Selenium_Java/seleniumtestngframework/target/extent-report/extent-spark-report.html
+2025-02-03 17:41:32 INFO  BaseSetup - Starting the test setup...
+2025-02-03 17:41:32 INFO  BaseSetup - Selected browser: chrome
+2025-02-03 17:41:39 INFO  ExtentReportManager - Browser opened successfully.
+2025-02-03 17:41:39 INFO  BaseSetup - Tearing down the test...
+2025-02-03 17:41:39 INFO  BaseSetup - Browser closed.
+2025-02-03 17:41:40 INFO  ExtentReportManager - Test execution completed. View the report at: file:///C:/Users/vipul/git/Test_Automation_Hub/Selenium_Java/seleniumtestngframework/reports/extent-report/extent-spark-report.html
+2025-02-03 17:45:05 INFO  BaseSetup - Starting the test setup...
+2025-02-03 17:45:05 INFO  BaseSetup - Selected browser: chrome
+2025-02-03 17:45:11 INFO  ExtentReportManager - Browser opened successfully.
+2025-02-03 17:45:11 INFO  BaseSetup - Tearing down the test...
+2025-02-03 17:45:11 INFO  BaseSetup - Browser closed.
+2025-02-03 17:45:12 INFO  ExtentReportManager - Test execution completed. View the report at: file:///C:/Users/vipul/git/Test_Automation_Hub/Selenium_Java/seleniumtestngframework/reports/extent-report/extent-spark-report.html
+2025-02-03 17:57:20 INFO  BaseSetup - Starting the test setup...
+2025-02-03 17:57:20 INFO  BaseSetup - Selected browser: chrome
+2025-02-03 17:57:27 INFO  ExtentReportManager - Browser opened successfully.
+2025-02-03 17:57:27 INFO  BaseSetup - Tearing down the test...
+2025-02-03 17:57:27 INFO  BaseSetup - Browser closed.
+2025-02-03 17:57:27 INFO  ExtentReportManager - Test execution completed. View the report at: file:///C:/Users/vipul/git/Test_Automation_Hub/Selenium_Java/seleniumtestngframework/reports/extent-report/extent-spark-report.html
+2025-02-03 17:58:38 INFO  BaseSetup - Starting the test setup...
+2025-02-03 17:58:38 INFO  BaseSetup - Selected browser: chrome
+2025-02-03 17:58:44 INFO  ExtentReportManager - Browser opened successfully.
+2025-02-03 17:58:44 INFO  BaseSetup - Tearing down the test...
+2025-02-03 17:58:44 INFO  BaseSetup - Browser closed.
+2025-02-03 17:58:45 INFO  ExtentReportManager - Test execution completed. View the report at: file:///C:/Users/vipul/git/Test_Automation_Hub/Selenium_Java/seleniumtestngframework/reports/extent-report/extent-spark-report.html
+2025-02-03 18:03:40 INFO  BaseSetup - Starting the test setup...
+2025-02-03 18:03:40 INFO  BaseSetup - Selected browser: chrome
+2025-02-03 18:03:48 INFO  ExtentReportManager - Browser opened successfully.
+2025-02-03 18:03:48 INFO  BaseSetup - Tearing down the test...
+2025-02-03 18:03:48 INFO  BaseSetup - Browser closed.
+2025-02-03 18:03:48 INFO  ExtentReportManager - Test execution completed. View the report at: file:/C:/Users/vipul/git/Test_Automation_Hub/Selenium_Java/seleniumtestngframework/reports/extent-report/extent-spark-report.html
+2025-02-03 18:08:44 INFO  BaseSetup - Starting the test setup...
+2025-02-03 18:08:44 INFO  ExtentReportManager - Starting the test setup...
+2025-02-03 18:08:44 INFO  ExtentReportManager - Selected browser: chrome
+2025-02-03 18:08:44 INFO  BaseSetup - Selected browser: chrome
+2025-02-03 18:08:50 INFO  ExtentReportManager - https://haldirams.comopened successfully.
+2025-02-03 18:08:50 INFO  ExtentReportManager - Browser opened successfully.
+2025-02-03 18:08:50 INFO  BaseSetup - Tearing down the test...
+2025-02-03 18:08:50 INFO  BaseSetup - Browser closed.
+2025-02-03 18:08:50 INFO  ExtentReportManager - Browser closed successfully.
+2025-02-03 18:08:51 INFO  ExtentReportManager - Test execution completed. View the report at: file:/C:/Users/vipul/git/Test_Automation_Hub/Selenium_Java/seleniumtestngframework/reports/extent-report/extent-spark-report.html
+2025-02-03 18:13:27 INFO  BaseSetup - Starting the test setup...
+2025-02-03 18:13:27 INFO  ExtentReportManager - Starting the test setup...
+2025-02-03 18:13:27 INFO  ExtentReportManager - Selected browser: chrome
+2025-02-03 18:13:27 INFO  BaseSetup - Selected browser: chrome
+2025-02-03 18:13:32 INFO  ExtentReportManager - Browser opened successfully.
+2025-02-03 18:13:32 INFO  ExtentReportManager - https://haldirams.comopened successfully.
+2025-02-03 18:13:32 INFO  BaseSetup - Tearing down the test...
+2025-02-03 18:13:32 INFO  BaseSetup - Browser closed.
+2025-02-03 18:13:32 INFO  ExtentReportManager - Browser closed successfully.
+2025-02-03 18:13:33 INFO  ExtentReportManager - Test execution completed. View the report at: file:/C:/Users/vipul/git/Test_Automation_Hub/Selenium_Java/seleniumtestngframework/reports/extent-report/extent-spark-report.html
+2025-02-03 18:15:43 INFO  BaseSetup - Starting the test setup...
+2025-02-03 18:15:43 INFO  ExtentReportManager - Starting the test setup...
+2025-02-03 18:15:43 INFO  ExtentReportManager - Selected browser: chrome
+2025-02-03 18:15:43 INFO  BaseSetup - Selected browser: chrome
+2025-02-03 18:15:50 INFO  ExtentReportManager - Browser opened successfully.
+2025-02-03 18:15:50 INFO  ExtentReportManager - https://haldirams.comopened successfully.
+2025-02-03 18:15:50 INFO  ExtentReportManager - Clicked on search box
+2025-02-03 18:15:50 INFO  ExtentReportManager - testuseris added as input in search box
+2025-02-03 18:15:50 INFO  BaseSetup - Tearing down the test...
+2025-02-03 18:15:50 INFO  BaseSetup - Browser closed.
+2025-02-03 18:15:50 INFO  ExtentReportManager - Browser closed successfully.
+2025-02-03 18:15:51 INFO  ExtentReportManager - Test execution completed. View the report at: file:/C:/Users/vipul/git/Test_Automation_Hub/Selenium_Java/seleniumtestngframework/reports/extent-report/extent-spark-report.html
+2025-02-03 18:34:42 INFO  BaseSetup - Starting the test setup...
+2025-02-03 18:34:42 INFO  ExtentReportManager - Starting the test setup...
+2025-02-03 18:34:42 INFO  ExtentReportManager - Selected browser: chrome
+2025-02-03 18:34:42 INFO  BaseSetup - Selected browser: chrome
+2025-02-03 18:34:49 INFO  ExtentReportManager - Browser opened successfully.
+2025-02-03 18:34:49 INFO  ExtentReportManager - https://haldirams.comopened successfully.
+2025-02-03 18:34:49 INFO  ExtentReportManager - Clicked on search box
+2025-02-03 18:34:49 INFO  ExtentReportManager - testuser is added as an input in search box
+2025-02-03 18:34:49 ERROR ExtentReportManager - Error capturing screenshot: Cannot create directory 'reports\extent-report\extent-spark-report.html'.
+2025-02-03 18:34:49 INFO  BaseSetup - Tearing down the test...
+2025-02-03 18:34:49 INFO  BaseSetup - Browser closed.
+2025-02-03 18:34:49 INFO  ExtentReportManager - Browser closed successfully.
+2025-02-03 18:34:50 INFO  ExtentReportManager - Test execution completed. View the report at: file:/C:/Users/vipul/git/Test_Automation_Hub/Selenium_Java/seleniumtestngframework/reports/extent-report/extent-spark-report.html
+2025-02-03 18:36:54 INFO  BaseSetup - Starting the test setup...
+2025-02-03 18:36:54 INFO  ExtentReportManager - Starting the test setup...
+2025-02-03 18:36:54 INFO  ExtentReportManager - Selected browser: chrome
+2025-02-03 18:36:54 INFO  BaseSetup - Selected browser: chrome
+2025-02-03 18:36:59 INFO  ExtentReportManager - Browser opened successfully.
+2025-02-03 18:36:59 INFO  ExtentReportManager - https://haldirams.comopened successfully.
+2025-02-03 18:36:59 INFO  ExtentReportManager - Clicked on search box
+2025-02-03 18:37:00 INFO  ExtentReportManager - testuser is added as an input in search box
+2025-02-03 18:37:00 INFO  BaseSetup - Tearing down the test...
+2025-02-03 18:37:00 INFO  BaseSetup - Browser closed.
+2025-02-03 18:37:00 INFO  ExtentReportManager - Browser closed successfully.
+2025-02-03 18:37:00 INFO  ExtentReportManager - Test execution completed. View the report at: file:/C:/Users/vipul/git/Test_Automation_Hub/Selenium_Java/seleniumtestngframework/reports/extent-report/extent-spark-report.html

@@ -1,2 +1,12 @@
+# Ignore Java class files
+*.class
+
+# Ignore Maven target directory
 /target/
 /test-output/
+
+# Ignore IDE-specific files (e.g., Eclipse, IntelliJ, etc.)
+*.iml
+*.project
+*.classpath
+/.settings/

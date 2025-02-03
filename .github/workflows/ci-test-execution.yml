@@ -13,6 +13,9 @@ jobs:
     runs-on: ubuntu-latest  # Executes tests in a cloud-based Linux machine
 
     steps:
+      - name: Set Timezone
+        run: sudo timedatectl set-timezone Asia/Kolkata
+        
       - name: Checkout Repository
         uses: actions/checkout@v3  # Clones your repo
 

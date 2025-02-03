@@ -294,3 +294,15 @@ Session ID: ec0b960a578e75748fba5dd993999060
 2025-02-03 20:57:05 INFO  BaseSetup - Browser closed.
 2025-02-03 20:57:05 INFO  ExtentReportManager - Browser closed successfully.
 2025-02-03 20:57:05 INFO  ExtentReportManager - Test execution completed. Opening the report in browser or View the report at: file:/C:/Users/vipul/git/Test_Automation_Hub/Selenium_Java/seleniumtestngframework/reports/extent-report/extent-spark-report.html
+2025-02-04 01:49:50 INFO  BaseSetup - Starting the test setup...
+2025-02-04 01:49:50 INFO  ExtentReportManager - Starting the test setup...
+2025-02-04 01:49:50 INFO  ExtentReportManager - Selected browser: chrome
+2025-02-04 01:49:50 INFO  BaseSetup - Selected browser: chrome
+2025-02-04 01:49:56 INFO  ExtentReportManager - Browser opened successfully.
+2025-02-04 01:49:56 INFO  ExtentReportManager - https://haldirams.comopened successfully.
+2025-02-04 01:49:56 INFO  ExtentReportManager - Sent value 'testuser' to element: By.name: q
+2025-02-04 01:49:56 INFO  ExtentReportManager - Retrieved text from element: WEDDING SPECIAL
+2025-02-04 01:49:56 INFO  BaseSetup - Tearing down the test...
+2025-02-04 01:49:57 INFO  BaseSetup - Browser closed.
+2025-02-04 01:49:57 INFO  ExtentReportManager - Browser closed successfully.
+2025-02-04 01:49:57 INFO  ExtentReportManager - Test execution completed. Opening the report in browser or View the report at: file:/C:/Users/vipul/git/Test_Automation_Hub/Selenium_Java/seleniumtestngframework/reports/extent-report/extent-spark-report.html

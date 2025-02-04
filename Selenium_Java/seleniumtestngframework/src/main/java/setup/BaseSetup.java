@@ -142,7 +142,7 @@ public class BaseSetup {
 
 		logger.info(resultMessage);
 		ExtentReportManager.logInfo("Browser closed successfully.");
-		ExtentReportManager.generateReportLink();
+		// ExtentReportManager.generateReportLink();
 	}
 
 	// Utility method to log test method name in UPPERCASE

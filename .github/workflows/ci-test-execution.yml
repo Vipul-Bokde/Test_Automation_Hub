@@ -3,29 +3,29 @@ name: Selenium Test Automation
 on:
   push:
     branches:
-      - main  # Runs tests on every push to the main branch
+      - main
   pull_request:
     branches:
       - main
 
 jobs:
   test:
-    runs-on: ubuntu-latest  # Executes tests in a cloud-based Linux machine
+    runs-on: ubuntu-latest
 
     steps:
       - name: Set Timezone
         run: sudo timedatectl set-timezone Asia/Kolkata
         
       - name: Checkout Repository
-        uses: actions/checkout@v3  # Clones your repo
+        uses: actions/checkout@v3
 
       - name: Set Up Java and Maven
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: '17'  # Or your desired JDK version
+          java-version: '17'
 
-      - name: Set Up Chrome and ChromeDriver
+      - name: Install Chrome and ChromeDriver
         run: |
           sudo apt update
           sudo apt install -y google-chrome-stable
@@ -34,24 +34,47 @@ jobs:
 
       - name: Clean Maven Cache
         run: mvn dependency:purge-local-repository
-        
+        working-directory: ./Selenium_Java/seleniumtestngframework
 
-      - name: Run Smoke Suite
-        run: mvn clean test -Dsurefire.suiteXmlFiles=smoke_suite.xml -Dgroups=smoke
-        working-directory: ./Selenium_Java/seleniumtestngframework  # Point to the folder with the pom.xml
+      - name: Start Xvfb (Virtual Display)
+        run: Xvfb :99 -screen 0 1920x1080x24 &
+      
+      - name: Run Smoke Suite (with Recording)
+        run: |
+          export DISPLAY=:99
+          ffmpeg -y -video_size 1920x1080 -framerate 10 -f x11grab -i :99.0 reports/smoke_test_execution.mp4 &
+          mvn clean test -Dsurefire.suiteXmlFiles=smoke_suite.xml -Dgroups=smoke
+          pkill -f ffmpeg
+        working-directory: ./Selenium_Java/seleniumtestngframework
 
-      - name: Upload Test Reports
+      - name: Upload Smoke Test Reports
         uses: actions/upload-artifact@v4
         with:
           name: Smoke-Test-Reports
           path: ./Selenium_Java/seleniumtestngframework/reports/extent-report
-        
-      - name: Run Sanity Suite
-        run: mvn clean test -Dsurefire.suiteXmlFiles=sanity_suite.xml -Dgroups=smoke
-        working-directory: ./Selenium_Java/seleniumtestngframework  # Point to the folder with the pom.xml
 
-      - name: Upload Test Reports
+      - name: Upload Smoke Test Execution Video
+        uses: actions/upload-artifact@v4
+        with:
+          name: Smoke-Test-Execution-Video
+          path: ./Selenium_Java/seleniumtestngframework/reports/smoke_test_execution.mp4
+
+      - name: Run Sanity Suite (with Recording)
+        run: |
+          export DISPLAY=:99
+          ffmpeg -y -video_size 1920x1080 -framerate 10 -f x11grab -i :99.0 reports/sanity_test_execution.mp4 &
+          mvn clean test -Dsurefire.suiteXmlFiles=sanity_suite.xml -Dgroups=sanity
+          pkill -f ffmpeg
+        working-directory: ./Selenium_Java/seleniumtestngframework
+
+      - name: Upload Sanity Test Reports
         uses: actions/upload-artifact@v4
         with:
           name: Sanity-Test-Reports
           path: ./Selenium_Java/seleniumtestngframework/reports/extent-report
+
+      - name: Upload Sanity Test Execution Video
+        uses: actions/upload-artifact@v4
+        with:
+          name: Sanity-Test-Execution-Video
+          path: ./Selenium_Java/seleniumtestngframework/reports/sanity_test_execution.mp4

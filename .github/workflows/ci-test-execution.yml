@@ -43,7 +43,7 @@ jobs:
       - name: Upload Test Reports
         uses: actions/upload-artifact@v4
         with:
-          name: Test-Reports
+          name: Smoke-Test-Reports
           path: ./Selenium_Java/seleniumtestngframework/reports/extent-report
         
       - name: Run Sanity Suite
@@ -53,5 +53,5 @@ jobs:
       - name: Upload Test Reports
         uses: actions/upload-artifact@v4
         with:
-          name: Test-Reports
+          name: Sanity-Test-Reports
           path: ./Selenium_Java/seleniumtestngframework/reports/extent-report

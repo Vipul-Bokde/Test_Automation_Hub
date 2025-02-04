@@ -29,4 +29,14 @@ public class BrowserActions {
 	    public void goForward() {
 	        driver.navigate().forward();
 	    }
+	    
+	    // Maximize the browser window
+	    public void maximizeWindow() {
+	        driver.manage().window().maximize();
+	    }
+
+	    // Navigate to a given URL
+	    public void openURL(String url) {
+	        driver.get(url);
+	    }
 }

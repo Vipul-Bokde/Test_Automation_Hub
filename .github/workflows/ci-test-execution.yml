@@ -36,7 +36,7 @@ jobs:
         run: mvn dependency:purge-local-repository
 
       - name: Run Smoke Suite
-        run: mvn clean tes -Dsurefire.suiteXmlFiles=smoke_suite.xml
+        run: mvn clean test -Dsurefire.suiteXmlFiles=smoke_suite.xml
         working-directory: ./Selenium_Java/seleniumtestngframework  # Point to the folder with the pom.xml
 
       - name: Run Sanity Suite

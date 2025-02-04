@@ -36,12 +36,18 @@ jobs:
         run: mvn dependency:purge-local-repository
         
 
-      - name: Run Sanity Suite
-        run: mvn clean test -Dsurefire.suiteXmlFiles=sanity_suite.xml -Dgroups=smoke
-        working-directory: ./Selenium_Java/seleniumtestngframework  # Point to the folder with the pom.xml
-        
       - name: Run Smoke Suite
         run: mvn clean test -Dsurefire.suiteXmlFiles=smoke_suite.xml -Dgroups=smoke
+        working-directory: ./Selenium_Java/seleniumtestngframework  # Point to the folder with the pom.xml
+
+      - name: Upload Test Reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: Test-Reports
+          path: ./Selenium_Java/seleniumtestngframework/reports/extent-report
+        
+      - name: Run Sanity Suite
+        run: mvn clean test -Dsurefire.suiteXmlFiles=sanity_suite.xml -Dgroups=smoke
         working-directory: ./Selenium_Java/seleniumtestngframework  # Point to the folder with the pom.xml
 
       - name: Upload Test Reports

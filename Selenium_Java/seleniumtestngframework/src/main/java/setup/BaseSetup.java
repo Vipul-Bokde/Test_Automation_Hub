@@ -152,4 +152,15 @@ public class BaseSetup {
     private boolean isHeadless() {
         return GraphicsEnvironment.isHeadless() || System.getenv("GITHUB_ACTIONS") != null;
     }
+
+    // Utility method to log test method name in UPPERCASE
+	private void logTestMethodName(String testName) {
+		if (testName != null) {
+			String upperCaseTestName = testName.toUpperCase();
+			logger.info("Executing Test: " + upperCaseTestName);
+			ExtentReportManager.logInfo("Executing Test: " + upperCaseTestName);
+		} else {
+			logger.warn("Test method name is null, skipping log.");
+		}
+	}
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Regression Suite">
+	<test name="Here only regression test cases are executed below with their logs and informations">
+		<groups>
+			<run>
+				<include name="regression"/>
+			</run>
+		</groups>
+		<classes>
+			<class name="testcases.first_test_case" />
+		</classes>
+	</test>
+</suite>

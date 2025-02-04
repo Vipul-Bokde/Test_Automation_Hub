@@ -46,9 +46,9 @@ public class ExtentReportManager {
 	}
 
 	// Start a test in the report
-	public static void startTest(String testName, String testDescription) {
+	public static void startTest(String testName, String testDescription, String groupName) {
 		String authorname = ConfigReader.getProperty("test.report.author.name");
-		ExtentTest extentTest = extent.createTest(testName, testDescription).assignAuthor(authorname).assignCategory("Sanity");
+		ExtentTest extentTest = extent.createTest(testName, testDescription).assignAuthor(authorname).assignCategory(groupName);
 		test.set(extentTest); // Store test in the thread-local variable
 	}
 

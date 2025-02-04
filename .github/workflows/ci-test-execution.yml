@@ -37,7 +37,7 @@ jobs:
         
 
       - name: Run Sanity Suite
-        run: mvn clean test -Dsurefire.suiteXmlFiles=smoke_suite.xml -Dgroups=smoke
+        run: mvn clean test -Dsurefire.suiteXmlFiles=sanity_suite.xml -Dgroups=smoke
         working-directory: ./Selenium_Java/seleniumtestngframework  # Point to the folder with the pom.xml
 
       - name: Upload Test Reports

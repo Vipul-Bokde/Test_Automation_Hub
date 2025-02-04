@@ -34,10 +34,11 @@ jobs:
 
       - name: Clean Maven Cache
         run: mvn dependency:purge-local-repository
-        working-directory: ./Selenium_Java/seleniumtestngframework  # Point to the folder with the pom.xml
+        
 
       - name: Run Smoke Suite
         run: mvn clean test
+        working-directory: ./Selenium_Java/seleniumtestngframework  # Point to the folder with the pom.xml
 
       - name: Upload Test Reports
         uses: actions/upload-artifact@v4

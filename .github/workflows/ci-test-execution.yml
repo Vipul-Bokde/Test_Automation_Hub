@@ -3,27 +3,27 @@ name: Selenium Test Automation
 on:
   push:
     branches:
-      - main
+      - main # Runs tests on every push to the main branch
   pull_request:
     branches:
       - main
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # Executes tests in a cloud-based Linux machine
 
     steps:
       - name: Set Timezone
         run: sudo timedatectl set-timezone Asia/Kolkata
 
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3 # Clones your repo
 
       - name: Set Up Java and Maven
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '17' # Or your desired JDK version
 
       - name: Set Up Chrome and ChromeDriver
         run: |
@@ -35,17 +35,12 @@ jobs:
       - name: Clean Maven Cache
         run: mvn dependency:purge-local-repository
 
-      - name: Debug Secret Key (IMPORTANT!)
-        run: |
-          echo "SECRET_TEST_DATA_KEY (first 10 chars): ${{ secrets.SECRET_TEST_DATA_KEY.substring(0, 10) }}"
-          echo "SECRET_TEST_DATA_KEY length: ${{ secrets.SECRET_TEST_DATA_KEY.length }}"
-
       - name: Set Secret Key as Environment Variable
         run: echo "SECRET_TEST_DATA_KEY=${{ secrets.SECRET_TEST_DATA_KEY }}" >> $GITHUB_ENV
 
       - name: Run Smoke Suite
         run: mvn clean test -Dsurefire.suiteXmlFiles=smoke_suite.xml -Dgroups=smoke
-        working-directory: ./Selenium_Java/seleniumtestngframework
+        working-directory: ./Selenium_Java/seleniumtestngframework # Point to the folder with the pom.xml
 
       - name: Upload Smoke Test Reports
         uses: actions/upload-artifact@v4
@@ -55,7 +50,7 @@ jobs:
 
       - name: Run Sanity Suite
         run: mvn clean test -Dsurefire.suiteXmlFiles=sanity_suite.xml -Dgroups=smoke
-        working-directory: ./Selenium_Java/seleniumtestngframework
+        working-directory: ./Selenium_Java/seleniumtestngframework # Point to the folder with the pom.xml
 
       - name: Upload Sanity Test Reports
         uses: actions/upload-artifact@v4

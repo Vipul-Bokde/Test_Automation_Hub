@@ -4,7 +4,7 @@ import javax.crypto.spec.SecretKeySpec;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class EncryptionUtilities {
+public class EncryptionUtilities_CSV {
 
 	private static final String SECRET_KEY = System.getenv("SECRET_TEST_DATA_KEY");
 	

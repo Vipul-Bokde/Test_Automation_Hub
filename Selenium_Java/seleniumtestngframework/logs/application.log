@@ -1,28 +1,14 @@
-2025-02-05 01:21:55 INFO  BaseSetup - Starting the test setup...
-2025-02-05 01:21:55 INFO  ExtentReportManager - Selected browser: chrome
-2025-02-05 01:21:55 INFO  BaseSetup - Selected browser: chrome
-2025-02-05 01:22:05 INFO  ExtentReportManager - Browser opened successfully.
-2025-02-05 01:22:05 INFO  ExtentReportManager - https://haldirams.com opened successfully.
-2025-02-05 01:22:05 INFO  ExtentReportManager - Sent value 'testuser' to element: By.name: q
-2025-02-05 01:22:05 INFO  ExtentReportManager - Retrieved text from element: WEDDING SPECIAL
-2025-02-05 01:22:05 INFO  FirstPage - WEDDING SPECIAL
-2025-02-05 01:22:05 INFO  BaseSetup - Executing Test: TESTVALIDLOGIN_1
-2025-02-05 01:22:05 INFO  ExtentReportManager - Executing Test: TESTVALIDLOGIN_1
-2025-02-05 01:22:05 INFO  ExtentReportManager - PASS: testValidLogin_1 passed successfully.
-2025-02-05 01:22:06 INFO  BaseSetup - testValidLogin_1 passed successfully.
-2025-02-05 01:22:06 INFO  ExtentReportManager - Browser closed successfully.
-2025-02-05 01:22:06 INFO  ExtentReportManager - Test execution completed. Opening the report in browser or View the report at: file:/C:/Users/vipul/git/Test_Automation_Hub/Selenium_Java/seleniumtestngframework/reports/extent-report/extent-spark-report.html
-2025-02-05 01:22:07 INFO  BaseSetup - Starting the test setup...
-2025-02-05 01:22:07 INFO  ExtentReportManager - Selected browser: chrome
-2025-02-05 01:22:07 INFO  BaseSetup - Selected browser: chrome
-2025-02-05 01:22:10 INFO  ExtentReportManager - Browser opened successfully.
-2025-02-05 01:22:10 INFO  ExtentReportManager - https://haldirams.com opened successfully.
-2025-02-05 01:22:10 INFO  ExtentReportManager - Sent value 'testuser' to element: By.name: q
-2025-02-05 01:22:10 INFO  ExtentReportManager - Retrieved text from element: WEDDING SPECIAL
-2025-02-05 01:22:10 INFO  FirstPage - WEDDING SPECIAL
-2025-02-05 01:22:10 INFO  BaseSetup - Executing Test: TESTVALIDLOGIN_2
-2025-02-05 01:22:10 INFO  ExtentReportManager - Executing Test: TESTVALIDLOGIN_2
-2025-02-05 01:22:10 INFO  ExtentReportManager - PASS: testValidLogin_2 passed successfully.
-2025-02-05 01:22:11 INFO  BaseSetup - testValidLogin_2 passed successfully.
-2025-02-05 01:22:11 INFO  ExtentReportManager - Browser closed successfully.
-2025-02-05 01:22:11 INFO  ExtentReportManager - Test execution completed. Opening the report in browser or View the report at: file:/C:/Users/vipul/git/Test_Automation_Hub/Selenium_Java/seleniumtestngframework/reports/extent-report/extent-spark-report.html
+2025-02-05 15:05:20 INFO  BaseSetup - Starting the test setup...
+2025-02-05 15:05:20 INFO  ExtentReportManager - Selected browser: chrome
+2025-02-05 15:05:20 INFO  BaseSetup - Selected browser: chrome
+2025-02-05 15:05:26 INFO  ExtentReportManager - Browser opened successfully.
+2025-02-05 15:05:26 INFO  ExtentReportManager - https://haldirams.com opened successfully.
+2025-02-05 15:05:27 INFO  ExtentReportManager - Sent value 'username' to element: By.name: q
+2025-02-05 15:05:27 INFO  ExtentReportManager - Retrieved text from element: WEDDING SPECIAL
+2025-02-05 15:05:27 INFO  FirstPage - WEDDING SPECIAL
+2025-02-05 15:05:27 INFO  BaseSetup - Executing Test: TESTVALIDLOGIN_1
+2025-02-05 15:05:27 INFO  ExtentReportManager - Executing Test: TESTVALIDLOGIN_1
+2025-02-05 15:05:27 INFO  ExtentReportManager - PASS: testValidLogin_1 passed successfully.
+2025-02-05 15:05:27 INFO  BaseSetup - testValidLogin_1 passed successfully.
+2025-02-05 15:05:27 INFO  ExtentReportManager - Browser closed successfully.
+2025-02-05 15:05:27 INFO  ExtentReportManager - Test execution completed. Opening the report in browser or View the report at: file:/C:/Users/vipul/git/Test_Automation_Hub/Selenium_Java/seleniumtestngframework/reports/extent-report/extent-spark-report.html

@@ -37,7 +37,7 @@ jobs:
         
 
       - name: Set Secret Key as Environment Variable
-        run: echo "SECRET_TEST_DATA_KEY=${{ secrets.SECRET_TEST_DATA_KEY }}" >> $GITHUB_ENV
+        run: echo "SECRET_TEST_DATA_KEY=${{ secrets.SECRET_TESTDATA_KEY }}" >> $GITHUB_ENV
 
       - name: Run Smoke Suite
         run: mvn clean test -Dsurefire.suiteXmlFiles=smoke_suite.xml -Dgroups=smoke

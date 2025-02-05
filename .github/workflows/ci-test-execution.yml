@@ -41,14 +41,13 @@ jobs:
           echo "SECRET_TEST_DATA_KEY length: ${{ secrets.SECRET_TEST_DATA_KEY.length }}"
 
       - name: Set Secret Key as Environment Variable
-        env:  # Use 'env' for setting environment variables
-          SECRET_TEST_DATA_KEY: ${{ secrets.SECRET_TEST_DATA_KEY }} # Directly set
+        run: echo "SECRET_TEST_DATA_KEY=${{ secrets.SECRET_TEST_DATA_KEY }}" >> $GITHUB_ENV
 
       - name: Run Smoke Suite
         run: mvn clean test -Dsurefire.suiteXmlFiles=smoke_suite.xml -Dgroups=smoke
         working-directory: ./Selenium_Java/seleniumtestngframework
 
-      - name: Upload Test Reports
+      - name: Upload Smoke Test Reports
         uses: actions/upload-artifact@v4
         with:
           name: Smoke-Test-Reports
@@ -58,7 +57,7 @@ jobs:
         run: mvn clean test -Dsurefire.suiteXmlFiles=sanity_suite.xml -Dgroups=smoke
         working-directory: ./Selenium_Java/seleniumtestngframework
 
-      - name: Upload Test Reports
+      - name: Upload Sanity Test Reports
         uses: actions/upload-artifact@v4
         with:
           name: Sanity-Test-Reports

@@ -36,6 +36,9 @@ jobs:
         run: mvn dependency:purge-local-repository
         
 
+      - name: Set Secret Key as Environment Variable
+        run: echo "SECRET_TEST_DATA_KEY=${{ secrets.SECRET_TEST_DATA_KEY }}" >> $GITHUB_ENV
+
       - name: Run Smoke Suite
         run: mvn clean test -Dsurefire.suiteXmlFiles=smoke_suite.xml -Dgroups=smoke
         working-directory: ./Selenium_Java/seleniumtestngframework  # Point to the folder with the pom.xml

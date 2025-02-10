@@ -3,44 +3,49 @@ name: Selenium Test Automation
 on:
   push:
     branches:
-      - main # Runs tests on every push to the main branch
+      - main
   pull_request:
     branches:
       - main
 
 jobs:
   test:
-    runs-on: ubuntu-latest # Executes tests in a cloud-based Linux machine
+    runs-on: ubuntu-latest
 
     steps:
       - name: Set Timezone
         run: sudo timedatectl set-timezone Asia/Kolkata
 
       - name: Checkout Repository
-        uses: actions/checkout@v3 # Clones your repo
+        uses: actions/checkout@v3
 
       - name: Set Up Java and Maven
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: '17' # Or your desired JDK version
+          java-version: '17'
 
-      - name: Set Up Chrome and ChromeDriver
+      - name: Install Chrome and ChromeDriver
         run: |
           sudo apt update
           sudo apt install -y google-chrome-stable
           sudo apt install -y chromium-chromedriver
           echo "Chrome and ChromeDriver installed"
 
+      - name: Decrypt Test Data
+        run: |
+          echo "$SECRET_TEST_DATA_KEY" > secret.key
+          java -jar csv-encrypt.jar decrypt "${{ env.TEST_DATA_ENC_PATH }}" "${{ env.TEST_DATA_CSV_PATH }}" secret.key
+          rm secret.key
+        working-directory: ./Selenium_Java/seleniumtestngframework
+
       - name: Clean Maven Cache
         run: mvn dependency:purge-local-repository
-
-      - name: Set Secret Key as Environment Variable
-        run: echo "SECRET_TEST_DATA_KEY=${{ secrets.SECRET_TEST_DATA_KEY }}" >> $GITHUB_ENV
+        working-directory: ./Selenium_Java/seleniumtestngframework
 
       - name: Run Smoke Suite
         run: mvn clean test -Dsurefire.suiteXmlFiles=smoke_suite.xml -Dgroups=smoke
-        working-directory: ./Selenium_Java/seleniumtestngframework # Point to the folder with the pom.xml
+        working-directory: ./Selenium_Java/seleniumtestngframework
 
       - name: Upload Smoke Test Reports
         uses: actions/upload-artifact@v4
@@ -49,11 +54,16 @@ jobs:
           path: ./Selenium_Java/seleniumtestngframework/reports/extent-report
 
       - name: Run Sanity Suite
-        run: mvn clean test -Dsurefire.suiteXmlFiles=sanity_suite.xml -Dgroups=smoke
-        working-directory: ./Selenium_Java/seleniumtestngframework # Point to the folder with the pom.xml
+        run: mvn clean test -Dsurefire.suiteXmlFiles=sanity_suite.xml -Dgroups=sanity
+        working-directory: ./Selenium_Java/seleniumtestngframework
 
       - name: Upload Sanity Test Reports
         uses: actions/upload-artifact@v4
         with:
           name: Sanity-Test-Reports
           path: ./Selenium_Java/seleniumtestngframework/reports/extent-report
+
+    env:
+      SECRET_TEST_DATA_KEY: ${{ secrets.SECRET_TEST_DATA_KEY }}
+      TEST_DATA_ENC_PATH: "src/main/resources/TestData.enc" # Path from config_data.properties
+      TEST_DATA_CSV_PATH: "src/main/resources/TestData.csv" # Path from config_data.properties

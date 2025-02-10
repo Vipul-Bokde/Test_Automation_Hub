@@ -32,13 +32,18 @@ public class BaseSetup {
 
 	@BeforeSuite(alwaysRun = true)
 	public void decryptTestData() throws Exception {
-		String inputPath = ConfigReader.getProperty("inputPath");
-		String outputPath = ConfigReader.getProperty("outputPath");
-		String tempPath = ConfigReader.getProperty("tempPath");
-		EncryptionUtilities_CSV.encrypt(inputPath, outputPath);
-		EncryptionUtilities_CSV.decrypt(outputPath, tempPath);
-		System.out.println("TestData decrypted for the test suite.");
-	}
+	    String inputPath = ConfigReader.getProperty("inputPath");
+	    String outputPath = ConfigReader.getProperty("outputPath");
+	    String tempPath = ConfigReader.getProperty("tempPath");
+
+	    // Check if running in GitHub Actions
+	    boolean isCI = System.getenv("GITHUB_ACTIONS") != null;
+
+	    if (isCI) {
+	        // Use paths relative to the GitHub Actions workspace
+	        outputPath = ConfigReader.getProperty("outputPath");
+	        tempPath = ConfigReader.getProperty("tempPath"); // Path to the temp file
+	    }
 
 	@BeforeMethod(alwaysRun = true)
 	public void setup(ITestContext context, Method method) {

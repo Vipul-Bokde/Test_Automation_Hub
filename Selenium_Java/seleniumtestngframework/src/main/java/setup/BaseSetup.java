@@ -43,6 +43,7 @@ public class BaseSetup {
 	        // Use paths relative to the GitHub Actions workspace
 	        outputPath = ConfigReader.getProperty("outputPath");
 	        tempPath = ConfigReader.getProperty("tempPath"); // Path to the temp file
+		EncryptionUtilities_CSV.decrypt(outputPath, tempPath);
 	    }
 
 	    EncryptionUtilities_CSV.encrypt(inputPath, outputPath);  // This will encrypt if the CSV is there

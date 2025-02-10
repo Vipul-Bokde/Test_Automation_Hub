@@ -32,16 +32,12 @@ jobs:
           sudo apt install -y chromium-chromedriver
           echo "Chrome and ChromeDriver installed"
 
-      - name: Decrypt Test Data
-        run: |
-          echo "$SECRET_TEST_DATA_KEY" > secret.key
-          java -jar csv-encrypt.jar decrypt "${{ env.TEST_DATA_ENC_PATH }}" "${{ env.TEST_DATA_CSV_PATH }}" secret.key
-          rm secret.key
-        working-directory: ./Selenium_Java/seleniumtestngframework
-
       - name: Clean Maven Cache
         run: mvn dependency:purge-local-repository
         working-directory: ./Selenium_Java/seleniumtestngframework
+
+      - name: Set Secret Key as Environment Variable
+        run: echo "SECRET_TEST_DATA_KEY=${{ secrets.SECRET_TEST_DATA_KEY }}" >> $GITHUB_ENV
 
       - name: Run Smoke Suite
         run: mvn clean test -Dsurefire.suiteXmlFiles=smoke_suite.xml -Dgroups=smoke
@@ -54,7 +50,7 @@ jobs:
           path: ./Selenium_Java/seleniumtestngframework/reports/extent-report
 
       - name: Run Sanity Suite
-        run: mvn clean test -Dsurefire.suiteXmlFiles=sanity_suite.xml -Dgroups=sanity
+        run: mvn clean test -Dsurefire.suiteXmlFiles=sanity_suite.xml -Dgroups=sanity # Corrected group name
         working-directory: ./Selenium_Java/seleniumtestngframework
 
       - name: Upload Sanity Test Reports
@@ -62,8 +58,3 @@ jobs:
         with:
           name: Sanity-Test-Reports
           path: ./Selenium_Java/seleniumtestngframework/reports/extent-report
-
-    env:
-      SECRET_TEST_DATA_KEY: ${{ secrets.SECRET_TEST_DATA_KEY }}
-      TEST_DATA_ENC_PATH: "src/main/resources/TestData.enc" # Path from config_data.properties
-      TEST_DATA_CSV_PATH: "src/main/resources/TestData.csv" # Path from config_data.properties

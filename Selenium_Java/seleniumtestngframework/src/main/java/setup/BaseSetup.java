@@ -45,6 +45,11 @@ public class BaseSetup {
 	        tempPath = ConfigReader.getProperty("tempPath"); // Path to the temp file
 	    }
 
+	    EncryptionUtilities_CSV.encrypt(inputPath, outputPath);  // This will encrypt if the CSV is there
+	    EncryptionUtilities_CSV.decrypt(outputPath, tempPath); // This will decrypt the enc file
+	    System.out.println("TestData decrypted for the test suite.");
+	}
+
 	@BeforeMethod(alwaysRun = true)
 	public void setup(ITestContext context, Method method) {
 		try {

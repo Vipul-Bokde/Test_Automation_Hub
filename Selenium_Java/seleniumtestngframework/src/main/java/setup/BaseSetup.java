@@ -17,142 +17,155 @@ import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import libraries.BrowserActions;
 import utilities.ConfigReader;
+import utilities.EncryptionUtilities_CSV;
 import utilities.ExtentReportManager;
 
 public class BaseSetup {
-    protected WebDriver driver;
-    private BrowserActions browserActions;
-    private static final Logger logger = LogManager.getLogger(BaseSetup.class);
+	protected WebDriver driver;
+	private BrowserActions browserActions;
+	private static final Logger logger = LogManager.getLogger(BaseSetup.class);
 
-    @BeforeMethod(alwaysRun = true)
-    public void setup(ITestContext context, Method method) {
-        try {
-            ExtentReportManager.initExtentReport();
-            logger.info("Starting the test setup...");
+	@BeforeSuite(alwaysRun = true)
+	public void decryptTestData() throws Exception {
+		String inputPath = ConfigReader.getProperty("inputPath");
+		String outputPath = ConfigReader.getProperty("outputPath");
+		String tempPath = ConfigReader.getProperty("tempPath");
+		EncryptionUtilities_CSV.encrypt(inputPath, outputPath);
+		EncryptionUtilities_CSV.decrypt(outputPath, tempPath);
+		System.out.println("TestData decrypted for the test suite.");
+	}
 
-            // Read browser name from config file
-            String browser = ConfigReader.getProperty("browser");
-            String url = ConfigReader.getProperty("base.url");
+	@BeforeMethod(alwaysRun = true)
+	public void setup(ITestContext context, Method method) {
+		try {
+			ExtentReportManager.initExtentReport();
+			logger.info("Starting the test setup...");
 
-            // Get suite, test method name & test description
-            String suiteName = context.getSuite().getName();
-            String testMethodName = method.getName(); // ✅ Fetching actual test method name
-            String[] groups = context.getIncludedGroups();
-            String groupNames = (groups.length > 0) ? Arrays.toString(groups) : "No Groups Defined";
+			// Read browser name from config file
+			String browser = ConfigReader.getProperty("browser");
+			String url = ConfigReader.getProperty("base.url");
 
-            // Explicitly log the suite name and method name
-            String fullTestName = suiteName + " - " + testMethodName;
-            ExtentReportManager.startTest(fullTestName, "Test Execution Started For " + testMethodName, groupNames);
+			// Get suite, test method name & test description
+			String suiteName = context.getSuite().getName();
+			String testMethodName = method.getName(); // ✅ Fetching actual test method name
+			String[] groups = context.getIncludedGroups();
+			String groupNames = (groups.length > 0) ? Arrays.toString(groups) : "No Groups Defined";
 
-            // Log browser info and other setup details
-            ExtentReportManager.logInfo("Selected browser: " + browser);
-            logger.info("Selected browser: " + browser);
+			// Explicitly log the suite name and method name
+			String fullTestName = suiteName + " - " + testMethodName;
+			ExtentReportManager.startTest(fullTestName, "Test Execution Started For " + testMethodName, groupNames);
 
-            // Check if running inside GitHub Actions
-            boolean isCI = System.getenv("GITHUB_ACTIONS") != null;
+			// Log browser info and other setup details
+			ExtentReportManager.logInfo("Selected browser: " + browser);
+			logger.info("Selected browser: " + browser);
 
-            switch (browser.toLowerCase()) {
-                case "chrome":
-                    WebDriverManager.chromedriver().setup();
-                    ChromeOptions chromeOptions = new ChromeOptions();
-                    if (isCI) {
-                        chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
-                    }
-                    driver = new ChromeDriver(chromeOptions);
-                    break;
-                case "edge":
-                    WebDriverManager.edgedriver().setup();
-                    EdgeOptions edgeOptions = new EdgeOptions();
-                    if (isCI) {
-                        edgeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
-                    }
-                    driver = new EdgeDriver(edgeOptions);
-                    break;
-                case "firefox":
-                    WebDriverManager.firefoxdriver().setup();
-                    FirefoxOptions firefoxOptions = new FirefoxOptions();
-                    if (isCI) {
-                        firefoxOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
-                    }
-                    driver = new FirefoxDriver(firefoxOptions);
-                    break;
-                case "safari":
-                    if (isCI) {
-                        logger.error("Safari is not supported in GitHub Actions.");
-                        throw new UnsupportedOperationException("Safari is not supported in CI.");
-                    }
-                    driver = new SafariDriver();
-                    break;
-                default:
-                    logger.error("Browser not supported: " + browser);
-                    throw new IllegalArgumentException("Browser not supported: " + browser);
-            }
+			// Check if running inside GitHub Actions
+			boolean isCI = System.getenv("GITHUB_ACTIONS") != null;
 
-            driver.manage().window().maximize();
-            driver.get(url);
-            ExtentReportManager.logInfo("Browser opened successfully.");
-            ExtentReportManager.logInfo(url + " opened successfully.");
+			switch (browser.toLowerCase()) {
+			case "chrome":
+				WebDriverManager.chromedriver().setup();
+				ChromeOptions chromeOptions = new ChromeOptions();
+				if (isCI) {
+					chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
+				}
+				driver = new ChromeDriver(chromeOptions);
+				break;
+			case "edge":
+				WebDriverManager.edgedriver().setup();
+				EdgeOptions edgeOptions = new EdgeOptions();
+				if (isCI) {
+					edgeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
+				}
+				driver = new EdgeDriver(edgeOptions);
+				break;
+			case "firefox":
+				WebDriverManager.firefoxdriver().setup();
+				FirefoxOptions firefoxOptions = new FirefoxOptions();
+				if (isCI) {
+					firefoxOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
+				}
+				driver = new FirefoxDriver(firefoxOptions);
+				break;
+			case "safari":
+				if (isCI) {
+					logger.error("Safari is not supported in GitHub Actions.");
+					throw new UnsupportedOperationException("Safari is not supported in CI.");
+				}
+				driver = new SafariDriver();
+				break;
+			default:
+				logger.error("Browser not supported: " + browser);
+				throw new IllegalArgumentException("Browser not supported: " + browser);
+			}
 
-            // Initialize BrowserActions
-            browserActions = new BrowserActions(driver);
-        } catch (Exception e) {
-            logger.error("Error in setup: " + e.getMessage(), e);
-            throw e; // Rethrow to fail the test
-        }
-    }
+			driver.manage().window().maximize();
+			driver.get(url);
+			ExtentReportManager.logInfo("Browser opened successfully.");
+			ExtentReportManager.logInfo(url + " opened successfully.");
 
-    @AfterMethod(alwaysRun = true)
-    public void teardown(ITestResult result) {
-        String testName = result.getName();
-        String resultMessage = "";
+			// Initialize BrowserActions
+			browserActions = new BrowserActions(driver);
+		} catch (Exception e) {
+			logger.error("Error in setup: " + e.getMessage(), e);
+			throw e; // Rethrow to fail the test
+		}
+	}
 
-        // Log the test method name again in UPPERCASE
-        logTestMethodName(testName);
+	@AfterMethod(alwaysRun = true)
+	public void teardown(ITestResult result) {
+		String testName = result.getName();
+		String resultMessage = "";
 
-        // Handle test result logging
-        if (result.getStatus() == ITestResult.SUCCESS) {
-            resultMessage = testName + " passed successfully.";
-            ExtentReportManager.logPass(resultMessage);
-        } else if (result.getStatus() == ITestResult.FAILURE) {
-            resultMessage = "Test failed with exception: " + result.getThrowable().getMessage();
-            ExtentReportManager.logException(result.getThrowable());
-        } else if (result.getStatus() == ITestResult.SKIP) {
-            resultMessage = testName + " was skipped.";
-            ExtentReportManager.logInfo(resultMessage);
-        }
+		// Log the test method name again in UPPERCASE
+		logTestMethodName(testName);
 
-        // Common teardown steps
-        ExtentReportManager.endTest();
+		// Handle test result logging
+		if (result.getStatus() == ITestResult.SUCCESS) {
+			resultMessage = testName + " passed successfully.";
+			ExtentReportManager.logPass(resultMessage);
+		} else if (result.getStatus() == ITestResult.FAILURE) {
+			resultMessage = "Test failed with exception: " + result.getThrowable().getMessage();
+			ExtentReportManager.logException(result.getThrowable());
+		} else if (result.getStatus() == ITestResult.SKIP) {
+			resultMessage = testName + " was skipped.";
+			ExtentReportManager.logInfo(resultMessage);
+		}
 
-        // ✅ Prevent NullPointerException for `browserActions`
-        if (browserActions != null) {
-            browserActions.quitBrowser();
-        } else {
-            logger.warn("BrowserActions is null, skipping browser quit.");
-        }
+		// Common teardown steps
+		ExtentReportManager.endTest();
 
-        logger.info(resultMessage);
-        ExtentReportManager.logInfo("Browser closed successfully.");
+		// ✅ Prevent NullPointerException for `browserActions`
+		if (browserActions != null) {
+			browserActions.quitBrowser();
+		} else {
+			logger.warn("BrowserActions is null, skipping browser quit.");
+		}
 
-        // ✅ Skip generating report link if running in headless mode (CI/CD)
-        if (!isHeadless()) {
-            ExtentReportManager.generateReportLink();
-        } else {
-            logger.warn("Skipping report opening in headless mode.");
-        }
-    }
+		logger.info(resultMessage);
+		ExtentReportManager.logInfo("Browser closed successfully.");
 
-    /**
-     * Utility method to check if running in a headless environment.
-     */
-    private boolean isHeadless() {
-        return GraphicsEnvironment.isHeadless() || System.getenv("GITHUB_ACTIONS") != null;
-    }
+		// ✅ Skip generating report link if running in headless mode (CI/CD)
+		if (!isHeadless()) {
+			ExtentReportManager.generateReportLink();
+		} else {
+			logger.warn("Skipping report opening in headless mode.");
+		}
+	}
 
-    // Utility method to log test method name in UPPERCASE
+	/**
+	 * Utility method to check if running in a headless environment.
+	 */
+	private boolean isHeadless() {
+		return GraphicsEnvironment.isHeadless() || System.getenv("GITHUB_ACTIONS") != null;
+	}
+
+	// Utility method to log test method name in UPPERCASE
 	private void logTestMethodName(String testName) {
 		if (testName != null) {
 			String upperCaseTestName = testName.toUpperCase();

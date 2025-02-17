@@ -1,4 +1,5 @@
 package setup;
+
 import java.util.Arrays;
 import java.lang.reflect.Method;
 import java.awt.GraphicsEnvironment;
@@ -33,9 +34,17 @@ public class BaseSetup {
 	public void decryptTestData() throws Exception {
 		// Check if running in GitHub Actions
 		boolean isCI = System.getenv("GITHUB_ACTIONS") != null;
-		String inputPath = ConfigReader.getProperty("inputPath");
-		String outputPath = ConfigReader.getProperty("outputPath");
-		String tempPath = ConfigReader.getProperty("tempPath");
+
+		// Get the absolute project root directory dynamically
+		String projectRoot = System.getProperty("user.dir");
+
+		// Read paths from config.properties
+		String inputPath = projectRoot + "/" + ConfigReader.getProperty("inputPath");
+		String outputPath = projectRoot + "/" + ConfigReader.getProperty("outputPath");
+		String tempPath = projectRoot + "/" + ConfigReader.getProperty("tempPath");
+//		String inputPath = ConfigReader.getProperty("inputPath");
+//		String outputPath = ConfigReader.getProperty("outputPath");
+//		String tempPath = ConfigReader.getProperty("tempPath");
 		if (!isCI) { // Only run decryption if NOT in CI
 			EncryptionUtilities_CSV.encrypt(inputPath, outputPath);
 			EncryptionUtilities_CSV.decrypt(outputPath, tempPath);

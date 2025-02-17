@@ -39,10 +39,12 @@ jobs:
       - name: Set Secret Key as Environment Variable
         run: echo "SECRET_TEST_DATA_KEY=${{ secrets.SECRET_TEST_DATA_KEY }}" >> $GITHUB_ENV
 
-      - name: Run Smoke & Sanity Suite
-        run: |
-          mvn clean test -Dsurefire.suiteXmlFiles=smoke_suite.xml -Dgroups=smoke
-          mvn test -Dsurefire.suiteXmlFiles=sanity_suite.xml -Dgroups=sanity
+      - name: Run Smoke Suite
+        run: mvn clean test -Dsurefire.suiteXmlFiles=smoke_suite.xml -Dgroups=smoke
+        working-directory: ./Selenium_Java/seleniumtestngframework
+        
+      - name: Run Sanity Suite
+        run: mvn test -Dsurefire.suiteXmlFiles=sanity_suite.xml -Dgroups=smoke
         working-directory: ./Selenium_Java/seleniumtestngframework
 
       - name: Upload Smoke Test Reports

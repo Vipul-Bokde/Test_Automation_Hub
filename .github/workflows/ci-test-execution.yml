@@ -19,12 +19,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Set Up Java with Caching
+      - name: Set Up Java and Maven
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '17'
-          cache: 'maven'  # Enable Maven dependency caching
 
       - name: Install Chrome and ChromeDriver
         run: |
@@ -33,17 +32,29 @@ jobs:
           sudo apt install -y chromium-chromedriver
           echo "Chrome and ChromeDriver installed"
 
+      - name: Clean Maven Cache
+        run: mvn dependency:purge-local-repository
+        working-directory: ./Selenium_Java/seleniumtestngframework
+
       - name: Set Secret Key as Environment Variable
         run: echo "SECRET_TEST_DATA_KEY=${{ secrets.SECRET_TEST_DATA_KEY }}" >> $GITHUB_ENV
 
-      - name: Run Smoke and Sanity Tests
-        run: |
-          mvn clean test -Dsurefire.suiteXmlFiles=smoke_suite.xml -Dgroups=smoke
-          mvn test -Dsurefire.suiteXmlFiles=sanity_suite.xml -Dgroups=sanity
+      - name: Run Smoke Suite
+        run: mvn clean test -Dsurefire.suiteXmlFiles=smoke_suite.xml -Dgroups=smoke
         working-directory: ./Selenium_Java/seleniumtestngframework
 
-      - name: Upload Test Reports
+      - name: Upload Smoke Test Reports
         uses: actions/upload-artifact@v4
         with:
-          name: Test-Reports
+          name: Smoke-Test-Reports
+          path: ./Selenium_Java/seleniumtestngframework/reports/extent-report
+
+      - name: Run Sanity Suite
+        run: mvn clean test -Dsurefire.suiteXmlFiles=sanity_suite.xml -Dgroups=sanity # Corrected group name
+        working-directory: ./Selenium_Java/seleniumtestngframework
+
+      - name: Upload Sanity Test Reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: Sanity-Test-Reports
           path: ./Selenium_Java/seleniumtestngframework/reports/extent-report

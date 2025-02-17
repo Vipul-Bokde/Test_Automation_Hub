@@ -39,35 +39,22 @@ jobs:
       - name: Set Secret Key as Environment Variable
         run: echo "SECRET_TEST_DATA_KEY=${{ secrets.SECRET_TEST_DATA_KEY }}" >> $GITHUB_ENV
 
-      - name: Check for TestData.enc File
-        id: check_enc_file
-        run: |
-          ENC_FILE="./Selenium_Java/seleniumtestngframework/src/main/java/testdata/TestData.enc"
-          if [ -f "$ENC_FILE" ]; then
-            echo "ENC_FILE_PATH=$ENC_FILE" >> $GITHUB_ENV
-            echo "TestData.enc found at $ENC_FILE"
-          else
-            echo "ENC_FILE_PATH=" >> $GITHUB_ENV
-            echo "TestData.enc not found, proceeding without it..."
-          fi
-
-      - name: Run Test Suites
-        run: |
-          TEST_SUITES=("smoke_suite.xml")  # Add more suites if needed
-          for SUITE in "${TEST_SUITES[@]}"; do
-            echo "Running suite: $SUITE"
-            if [ -z "$ENC_FILE_PATH" ]; then
-              echo "No TestData.enc found, running without it..."
-              mvn clean test -Dsurefire.suiteXmlFiles=$SUITE
-            else
-              echo "Using TestData.enc from $ENC_FILE_PATH"
-              mvn clean test -Dsurefire.suiteXmlFiles=$SUITE -Dtestdata.path=$ENC_FILE_PATH
-            fi
-          done
+      - name: Run Smoke Suite
+        run: mvn clean test -Dsurefire.suiteXmlFiles=smoke_suite.xml -Dgroups=smoke
         working-directory: ./Selenium_Java/seleniumtestngframework
 
-      - name: Upload Test Reports
+      - name: Upload Smoke Test Reports
         uses: actions/upload-artifact@v4
         with:
-          name: Test-Reports
+          name: Smoke-Test-Reports
+          path: ./Selenium_Java/seleniumtestngframework/reports/extent-report
+
+      - name: Run Sanity Suite
+        run: mvn clean test -Dsurefire.suiteXmlFiles=sanity_suite.xml -Dgroups=sanity # Corrected group name
+        working-directory: ./Selenium_Java/seleniumtestngframework
+
+      - name: Upload Sanity Test Reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: Sanity-Test-Reports
           path: ./Selenium_Java/seleniumtestngframework/reports/extent-report

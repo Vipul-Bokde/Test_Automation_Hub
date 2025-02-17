@@ -41,7 +41,6 @@ public class BaseSetup {
 			EncryptionUtilities_CSV.decrypt(outputPath, tempPath);
 			System.out.println("TestData decrypted for the test suite.");
 		} else {
-			EncryptionUtilities_CSV.encrypt(inputPath, outputPath);
 			EncryptionUtilities_CSV.decrypt(outputPath, tempPath);
 		}
 	}

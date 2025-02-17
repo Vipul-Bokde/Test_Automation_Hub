@@ -19,42 +19,33 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Set Up Java and Maven
+      - name: Set Up Java with Caching
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '17'
+          cache: 'maven'  # Enable Maven dependency caching
 
       - name: Install Chrome and ChromeDriver
         run: |
           sudo apt update
           sudo apt install -y google-chrome-stable
-          sudo apt install -y chromium-chromedriver
+          CHROME_VERSION=$(google-chrome --version | awk '{print $3}')
+          sudo wget -q -O /usr/local/bin/chromedriver https://chromedriver.storage.googleapis.com/${CHROME_VERSION}/chromedriver_linux64.zip
+          sudo chmod +x /usr/local/bin/chromedriver
           echo "Chrome and ChromeDriver installed"
-
-      - name: Clean Maven Cache
-        run: mvn dependency:purge-local-repository
-        working-directory: ./Selenium_Java/seleniumtestngframework
 
       - name: Set Secret Key as Environment Variable
         run: echo "SECRET_TEST_DATA_KEY=${{ secrets.SECRET_TEST_DATA_KEY }}" >> $GITHUB_ENV
 
-      - name: Run Smoke Suite
-        run: mvn clean test -Dsurefire.suiteXmlFiles=smoke_suite.xml -Dgroups=smoke
+      - name: Run Smoke and Sanity Tests
+        run: |
+          mvn clean test -Dsurefire.suiteXmlFiles=smoke_suite.xml -Dgroups=smoke
+          mvn test -Dsurefire.suiteXmlFiles=sanity_suite.xml -Dgroups=sanity
         working-directory: ./Selenium_Java/seleniumtestngframework
 
-      - name: Upload Smoke Test Reports
+      - name: Upload Test Reports
         uses: actions/upload-artifact@v4
         with:
-          name: Smoke-Test-Reports
-          path: ./Selenium_Java/seleniumtestngframework/reports/extent-report
-
-      - name: Run Sanity Suite
-        run: mvn clean test -Dsurefire.suiteXmlFiles=sanity_suite.xml -Dgroups=sanity # Corrected group name
-        working-directory: ./Selenium_Java/seleniumtestngframework
-
-      - name: Upload Sanity Test Reports
-        uses: actions/upload-artifact@v4
-        with:
-          name: Sanity-Test-Reports
+          name: Test-Reports
           path: ./Selenium_Java/seleniumtestngframework/reports/extent-report

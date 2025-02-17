@@ -43,7 +43,7 @@ public class BaseSetup {
 			EncryptionUtilities_CSV.decrypt(outputPath, tempPath);
 			System.out.println("TestData decrypted for the test suite.");
 		} else {
-			logger.info("Skipping data decryption in GitHub Actions."); // Log the skip
+			EncryptionUtilities_CSV.decrypt(outputPath, tempPath);
 		}
 	}
 

@@ -33,12 +33,10 @@ public class BaseSetup {
 	public void decryptTestData() throws Exception {
 		// Check if running in GitHub Actions
 		boolean isCI = System.getenv("GITHUB_ACTIONS") != null;
-
+		String inputPath = ConfigReader.getProperty("inputPath");
+		String outputPath = ConfigReader.getProperty("outputPath");
+		String tempPath = ConfigReader.getProperty("tempPath");
 		if (!isCI) { // Only run decryption if NOT in CI
-			String inputPath = ConfigReader.getProperty("inputPath");
-			String outputPath = ConfigReader.getProperty("outputPath");
-			String tempPath = ConfigReader.getProperty("tempPath");
-
 			EncryptionUtilities_CSV.encrypt(inputPath, outputPath);
 			EncryptionUtilities_CSV.decrypt(outputPath, tempPath);
 			System.out.println("TestData decrypted for the test suite.");

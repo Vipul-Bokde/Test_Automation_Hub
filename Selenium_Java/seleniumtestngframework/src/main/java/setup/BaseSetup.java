@@ -1,5 +1,4 @@
 package setup;
-
 import java.util.Arrays;
 import java.lang.reflect.Method;
 import java.awt.GraphicsEnvironment;
@@ -32,23 +31,20 @@ public class BaseSetup {
 
 	@BeforeSuite(alwaysRun = true)
 	public void decryptTestData() throws Exception {
-	    String inputPath = ConfigReader.getProperty("inputPath");
-	    String outputPath = ConfigReader.getProperty("outputPath");
-	    String tempPath = ConfigReader.getProperty("tempPath");
+		// Check if running in GitHub Actions
+		boolean isCI = System.getenv("GITHUB_ACTIONS") != null;
 
-	    // Check if running in GitHub Actions
-	    boolean isCI = System.getenv("GITHUB_ACTIONS") != null;
+		if (!isCI) { // Only run decryption if NOT in CI
+			String inputPath = ConfigReader.getProperty("inputPath");
+			String outputPath = ConfigReader.getProperty("outputPath");
+			String tempPath = ConfigReader.getProperty("tempPath");
 
-	    if (isCI) {
-	        // Use paths relative to the GitHub Actions workspace
-	        outputPath = ConfigReader.getProperty("outputPath");
-	        tempPath = ConfigReader.getProperty("tempPath"); // Path to the temp file
-		EncryptionUtilities_CSV.decrypt(outputPath, tempPath);
-	    }
-
-	    EncryptionUtilities_CSV.encrypt(inputPath, outputPath);  // This will encrypt if the CSV is there
-	    EncryptionUtilities_CSV.decrypt(outputPath, tempPath); // This will decrypt the enc file
-	    System.out.println("TestData decrypted for the test suite.");
+			EncryptionUtilities_CSV.encrypt(inputPath, outputPath);
+			EncryptionUtilities_CSV.decrypt(outputPath, tempPath);
+			System.out.println("TestData decrypted for the test suite.");
+		} else {
+			logger.info("Skipping data decryption in GitHub Actions."); // Log the skip
+		}
 	}
 
 	@BeforeMethod(alwaysRun = true)

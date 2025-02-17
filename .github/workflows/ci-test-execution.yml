@@ -42,7 +42,7 @@ jobs:
       - name: Check for TestData.enc File
         id: check_enc_file
         run: |
-          ENC_FILE="./Selenium_Java/seleniumtestngframework/src/main/resources/TestData.enc"
+          ENC_FILE="./Selenium_Java/seleniumtestngframework/src/main/java/testdata/TestData.enc"
           if [ -f "$ENC_FILE" ]; then
             echo "ENC_FILE_PATH=$ENC_FILE" >> $GITHUB_ENV
             echo "TestData.enc found at $ENC_FILE"

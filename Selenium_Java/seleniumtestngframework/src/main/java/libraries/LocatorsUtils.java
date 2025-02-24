@@ -11,12 +11,12 @@ import utilities.ExtentReportManager;
 import java.time.Duration;
 import java.util.List;
 
-public class Locators {
+public class LocatorsUtils {
 
 	private WebDriver driver;
 	private static final int DEFAULT_TIMEOUT = 10;
 
-	public Locators(WebDriver driver) {
+	public LocatorsUtils(WebDriver driver) {
 		this.driver = driver;
 	}
 
@@ -67,39 +67,6 @@ public class Locators {
 		}
 	}
 
-	// Wait for element to be visible
-	public WebElement waitForVisibility(By locator, int waitTimeInSeconds) {
-		try {
-			return new WebDriverWait(driver, Duration.ofSeconds(waitTimeInSeconds))
-					.until(ExpectedConditions.visibilityOfElementLocated(locator));
-		} catch (Exception e) {
-			ExtentReportManager.logException(e); // Log the exception automatically
-			throw e;
-		}
-	}
-
-	// Wait for element to be clickable
-	public WebElement waitForClickable(By locator, int waitTimeInSeconds) {
-		try {
-			return new WebDriverWait(driver, Duration.ofSeconds(waitTimeInSeconds))
-					.until(ExpectedConditions.elementToBeClickable(locator));
-		} catch (Exception e) {
-			ExtentReportManager.logException(e); // Log the exception automatically
-			throw e;
-		}
-	}
-
-	// Wait for element to be invisible
-	public void waitForInvisibility(By locator, int waitTimeInSeconds) {
-		try {
-			new WebDriverWait(driver, Duration.ofSeconds(waitTimeInSeconds))
-					.until(ExpectedConditions.invisibilityOfElementLocated(locator));
-		} catch (Exception e) {
-			ExtentReportManager.logException(e); // Log the exception automatically
-			throw e;
-		}
-	}
-
 	// Check if an element exists
 	public boolean elementExists(By locator) {
 		try {
@@ -120,7 +87,7 @@ public class Locators {
 	}
 
 	// Check if an element is selected
-	public boolean checkSelected(By locator) {
+	public boolean elementSelected(By locator) {
 		try {
 			WebElement element = getElement(locator, DEFAULT_TIMEOUT);
 			return element != null && element.isSelected();

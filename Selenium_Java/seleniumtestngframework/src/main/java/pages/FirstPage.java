@@ -6,8 +6,9 @@ import org.openqa.selenium.WebDriver;
 import libraries.*;
 
 public class FirstPage {
-	private Locators locators;
-	private MouseActions mouseActions;
+	private LocatorsUtils locators;
+	private SynchronisationAndWaitsUtils syncwaits;
+	private MouseActionsUtils mouseActions;
 	private static final Logger logger = LogManager.getLogger(FirstPage.class);
 	private By usernameField = By.name("q");
 	private By listOfSweet = By.xpath("(//a[@title = 'Wedding Special'])[3]");
@@ -15,8 +16,9 @@ public class FirstPage {
 
 	// Constructor
 	public FirstPage(WebDriver driver) {
-		this.locators = new Locators(driver);
-		this.mouseActions = new MouseActions(driver);
+		this.locators = new LocatorsUtils(driver);
+		this.mouseActions = new MouseActionsUtils(driver);
+		this.syncwaits = new SynchronisationAndWaitsUtils(driver);
 	}
 
 	public void validateSearchBox(String username) {
@@ -26,10 +28,8 @@ public class FirstPage {
 	}
 	
 	public void clickOnSearchButton() {
+		syncwaits.waitForPresenceOfElement(searchbutton, 1);
         mouseActions.clickOnElement(searchbutton);
         logger.info("Clicked successfully");
     }
-	
-
-
 }

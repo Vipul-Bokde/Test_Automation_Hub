@@ -20,14 +20,15 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import libraries.BrowserActions;
+import libraries.BrowserActionsUtils;
+import libraries.EnvironmentManager;
 import utilities.ConfigReader;
 import utilities.EncryptionUtilities_CSV;
 import utilities.ExtentReportManager;
 
 public class BaseSetup {
 	protected WebDriver driver;
-	private BrowserActions browserActions;
+	private BrowserActionsUtils browserActions;
 	private static final Logger logger = LogManager.getLogger(BaseSetup.class);
 
 	@BeforeSuite(alwaysRun = true)
@@ -42,9 +43,6 @@ public class BaseSetup {
 		String inputPath = projectRoot + "/" + ConfigReader.getProperty("inputPath");
 		String outputPath = projectRoot + "/" + ConfigReader.getProperty("outputPath");
 		String tempPath = projectRoot + "/" + ConfigReader.getProperty("tempPath");
-//		String inputPath = ConfigReader.getProperty("inputPath");
-//		String outputPath = ConfigReader.getProperty("outputPath");
-//		String tempPath = ConfigReader.getProperty("tempPath");
 		if (!isCI) { // Only run decryption if NOT in CI
 			EncryptionUtilities_CSV.encrypt(inputPath, outputPath);
 			EncryptionUtilities_CSV.decrypt(outputPath, tempPath);
@@ -62,7 +60,17 @@ public class BaseSetup {
 
 			// Read browser name from config file
 			String browser = ConfigReader.getProperty("browser");
-			String url = ConfigReader.getProperty("base.url");
+
+            // Get URL from EnvironmentManager:
+			String envName = ConfigReader.getProperty("environment");
+            String url = EnvironmentManager.getEnvironmentUrl(envName);
+
+            if (url == null) {
+                String errorMessage = "URL not found for environment: " + envName;
+                ExtentReportManager.logFail(errorMessage);
+                logger.error(errorMessage);
+                throw new IllegalArgumentException(errorMessage);
+            }
 
 			// Get suite, test method name & test description
 			String suiteName = context.getSuite().getName();
@@ -124,7 +132,7 @@ public class BaseSetup {
 			ExtentReportManager.logInfo(url + " opened successfully.");
 
 			// Initialize BrowserActions
-			browserActions = new BrowserActions(driver);
+			browserActions = new BrowserActionsUtils(driver);
 		} catch (Exception e) {
 			logger.error("Error in setup: " + e.getMessage(), e);
 			throw e; // Rethrow to fail the test

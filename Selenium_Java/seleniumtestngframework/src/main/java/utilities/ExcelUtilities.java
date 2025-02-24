@@ -1,9 +1,5 @@
-// ExcelUtilities.java
 package utilities;
-
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.*;
@@ -13,7 +9,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class ExcelUtilities implements AutoCloseable { // Implement AutoCloseable
+public class ExcelUtilities implements AutoCloseable {
 
     private static final String ENCRYPTED_FILE_PATH = ConfigReader.getProperty("outputPath_2");
     private static final String TEMP_FILE_PATH = ConfigReader.getProperty("tempPath_2");
@@ -21,19 +17,29 @@ public class ExcelUtilities implements AutoCloseable { // Implement AutoCloseabl
 
     private Workbook workbook;
     private Sheet sheet;
+    private String sheetName; // Store the sheet name
 
     public ExcelUtilities(String sheetName) {
+        this.sheetName = sheetName; // Initialize sheet name
         try {
             decryptFile(ENCRYPTED_FILE_PATH, TEMP_FILE_PATH);
-            workbook = new XSSFWorkbook(new File(TEMP_FILE_PATH));
-            sheet = workbook.getSheet(sheetName);
-            if (sheet == null) {
-                throw new RuntimeException("Sheet '" + sheetName + "' not found in Excel file.");
+            try (FileInputStream fis = new FileInputStream(TEMP_FILE_PATH)) { // Use try-with-resources
+                workbook = WorkbookFactory.create(fis); // Use WorkbookFactory
+                sheet = workbook.getSheet(sheetName);
+                if (sheet == null) {
+                    sheet = workbook.createSheet(sheetName); // Create if it doesn't exist
+                    // Add a header row if the sheet is new:
+                    Row headerRow = sheet.createRow(0);
+                    // You'll need to decide what your header columns should be.  For example:
+                    headerRow.createCell(0).setCellValue("Key");
+                    headerRow.createCell(1).setCellValue("Value");
+                }
             }
         } catch (Exception e) {
-            throw new RuntimeException("Error initializing ExcelUtilities: " + e.getMessage(), e); // Wrap and re-throw
+            throw new RuntimeException("Error initializing ExcelUtilities: " + e.getMessage(), e);
         }
     }
+
 
     private void decryptFile(String inputPath, String outputPath) throws Exception {
         if (SECRET_KEY == null || SECRET_KEY.isEmpty()) {
@@ -55,22 +61,20 @@ public class ExcelUtilities implements AutoCloseable { // Implement AutoCloseabl
         Map<String, String> dataMap = new HashMap<>();
         try {
             Iterator<Row> rowIterator = sheet.iterator();
-            Row headerRow = rowIterator.next();
-            if (!rowIterator.hasNext()) return dataMap; // Handle header-only sheet
-            Row valueRow = rowIterator.next();
+            if (rowIterator.hasNext()) { // Skip header row if present
+                rowIterator.next();
+            }
 
-            Iterator<Cell> headerCells = headerRow.cellIterator();
-            Iterator<Cell> valueCells = valueRow.cellIterator();
+            while (rowIterator.hasNext()) {
+                Row row = rowIterator.next();
+                Cell keyCell = row.getCell(0); // Assuming key is in the first column
+                Cell valueCell = row.getCell(1); // Assuming value is in the second column
 
-            while (headerCells.hasNext() && valueCells.hasNext()) {
-                Cell headerCell = headerCells.next();
-                Cell valueCell = valueCells.next();
-
-                String header = getCellValue(headerCell);
+                String key = getCellValue(keyCell);
                 String value = getCellValue(valueCell);
 
-                if (header != null && !header.isEmpty()) { // Check for null or empty header
-                    dataMap.put(header, value);
+                if (key != null && !key.isEmpty()) { // Check for null or empty key
+                    dataMap.put(key, value);
                 }
             }
         } catch (Exception e) {
@@ -79,7 +83,6 @@ public class ExcelUtilities implements AutoCloseable { // Implement AutoCloseabl
         return dataMap;
     }
 
-    // Helper function to get cell value as String, handling different cell types
     private String getCellValue(Cell cell) {
         if (cell == null) return null;
 
@@ -96,10 +99,13 @@ public class ExcelUtilities implements AutoCloseable { // Implement AutoCloseabl
                 } catch (IllegalStateException e) {
                     return cell.getCellFormula(); // If not numeric, get formula
                 }
+            case BLANK: // Handle blank cells
+                return "";
             default:
                 return null;
         }
     }
+
 
 
     public void writeData(String key, String value) {
@@ -125,9 +131,9 @@ public class ExcelUtilities implements AutoCloseable { // Implement AutoCloseabl
                 row.createCell(1).setCellValue(value);
             }
 
-            FileOutputStream outputStream = new FileOutputStream(TEMP_FILE_PATH);
-            workbook.write(outputStream);
-            outputStream.close();
+            try (FileOutputStream outputStream = new FileOutputStream(TEMP_FILE_PATH)) { // Try-with-resources
+                workbook.write(outputStream);
+            }
 
             encryptFile(TEMP_FILE_PATH, ENCRYPTED_FILE_PATH);
         } catch (Exception e) {

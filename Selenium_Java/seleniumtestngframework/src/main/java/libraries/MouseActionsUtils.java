@@ -21,6 +21,7 @@ public class MouseActionsUtils {
 	public void clickOnElement(By locator) {
 		try {
 			WebElement element = syncwaits.waitForElementToBeClickable(locator, DEFAULT_TIMEOUT);
+			highlightElement(driver, element, "yellow");
 			element.click();
 			ExtentReportManager.logInfo("Clicked on element: " + locator);
 		} catch (Exception e) {
@@ -73,6 +74,21 @@ public class MouseActionsUtils {
 		} catch (Exception e) {
 			ExtentReportManager.logException(e);
 			throw e;
+		}
+	}
+
+	private void highlightElement(WebDriver driver, WebElement element, String color) {
+		if (driver instanceof JavascriptExecutor) {
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].style.backgroundColor = '" + color + "'", element);
+
+			// Optional: Briefly pause to see the highlight (for demonstration)
+			try {
+				Thread.sleep(500); // Adjust duration as needed
+				js.executeScript("arguments[0].style.backgroundColor = ''", element); // Reset the color after click
+			} catch (InterruptedException e) {
+				Thread.currentThread().interrupt(); // Restore interrupt status
+			}
 		}
 	}
 }

@@ -19,9 +19,8 @@ public class Home_Page_Test extends BaseSetup {
 
 	@Test(groups = { "smoke" })
 	public void testValidLogin_1() {
-		executor.executePageMethod(firstPage, "validateSearchBox", "searchBox");
-		executor.executePageMethod(firstPage, "clickOnSearchButton");
 		executor.executePageMethod(firstPage, "validateSearchBox", "sweetName");
 		executor.executePageMethod(firstPage, "clickOnSearchButton");
+		executor.executePageMethod(firstPage, "exploresweetNameItem");
 	}
 }
